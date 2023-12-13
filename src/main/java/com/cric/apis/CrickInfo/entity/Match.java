@@ -7,7 +7,7 @@ import java.util.Date;
 
 @Entity
 @Table
-public class matchEntity {
+public class Match {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long matchId;
@@ -24,7 +24,19 @@ public class matchEntity {
     @Enumerated
     private MatchStatus status;
 
-    private Data date= (Data) new Date();
+    public Match(Date date) {
+        this.date = date;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    private Date date=new Date();
 
     //check the status of match
     public void setMatchStatus(){
@@ -35,9 +47,9 @@ public class matchEntity {
         }
     }
 
-    public matchEntity(Long matchId, String teamHeading, String matchNumberVenue, String battingTeam,
-                       String bowlTeam, String battingTeamScore, String bowlTeamScore, String liveText,
-                       String matchLink, String textComplete, MatchStatus status, Data date) {
+    public Match(Long matchId, String teamHeading, String matchNumberVenue, String battingTeam,
+                 String bowlTeam, String battingTeamScore, String bowlTeamScore, String liveText,
+                 String matchLink, String textComplete, MatchStatus status) {
         this.matchId = matchId;
         this.teamHeading = teamHeading;
         this.matchNumberVenue = matchNumberVenue;
@@ -49,10 +61,9 @@ public class matchEntity {
         this.matchLink = matchLink;
         this.textComplete = textComplete;
         this.status = status;
-        this.date = date;
     }
 
-    public matchEntity(){}
+    public Match(){}
 
     public Long getMatchId() {
         return matchId;
@@ -142,11 +153,4 @@ public class matchEntity {
         this.status = status;
     }
 
-    public Data getDate() {
-        return date;
-    }
-
-    public void setDate(Data date) {
-        this.date = date;
-    }
 }
